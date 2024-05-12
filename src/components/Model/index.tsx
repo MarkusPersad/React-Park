@@ -11,7 +11,7 @@ export function Model(props:ModelProps) {
         [name:string]: ObjectExtend
     }
     return (
-        <group  dispose={null} onClick={(e)=>{console.log('onClick mesh: ', e)}}>
+        <group  position={props.position} dispose={null} onClick={(e)=>{console.log('onClick mesh: ', e)}}>
             <group
                 position={[26.213, 5.932, -7.299]}
                 rotation={[Math.PI, 0, Math.PI]}
