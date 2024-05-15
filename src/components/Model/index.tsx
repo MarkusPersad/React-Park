@@ -11,9 +11,13 @@ export function Model(props:ModelProps) {
         [name:string]:ObjectExtend
     }
     return (
+<<<<<<< HEAD
         <group position={props.position} scale={props.scale} rotation={props.rotation}  dispose={null} onClick={(e)=>{
             e.stopPropagation();
             console.log(e)}}>
+=======
+        <group position={props.position} scale={props.scale} rotation={props.rotation}  dispose={null} onClick={(e)=>{console.log(e)}}>
+>>>>>>> 2a66d6324d8c152730eda1eb9fd9e6ce49d4e257
             <group
                 name="Cube434"
                 position={[26.213, 5.932, -7.299]}
