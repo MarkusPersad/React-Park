@@ -1,6 +1,8 @@
-import {BufferGeometry, Material, Object3D,Object3DEventMap} from 'three'
+import {BufferGeometry, Material, Object3D,} from 'three'
 
-export interface ObjectExtend extends Object3D<Object3DEventMap>{
+
+
+export interface ObjectExtend extends Object3D{
     geometry?:BufferGeometry
     material?:Material
 }

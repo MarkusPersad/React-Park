@@ -21,7 +21,7 @@ function SceneContent(){
             <ambientLight intensity={1}/>
             <directionalLight intensity={2}/>
             <Sky/>
-            <OrbitControls  />
+            <OrbitControls autoRotateSpeed={10} enablePan={true}/>
             <PerspectiveCamera/>
             <Model position={new Vector3(0,-10,0)} path={"city.glb"}/>
         </>
