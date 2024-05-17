@@ -3,7 +3,9 @@ import {useGLTF} from "@react-three/drei";
 import {classifyNodes} from "../../Modules";
 import {Children} from './Children'
 
+
 export function Model(props:ModelProps){
+
     const {nodes:model} = useGLTF(props.path);
     const nodes = classifyNodes(model) as ObjectExtend[]
     const Groups = nodes.map((node:ObjectExtend)=>{
