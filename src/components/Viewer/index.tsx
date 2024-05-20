@@ -1,8 +1,9 @@
 import {Canvas} from "@react-three/fiber";
-import {OrbitControls, PerspectiveCamera,  Sky,Stats} from "@react-three/drei";
+import {OrbitControls,  Sky,Stats} from "@react-three/drei";
 import {Model} from '../Model'
 import './Viewer.css'
-import {Vector3} from "three";
+
+
 
 
 
@@ -22,9 +23,9 @@ function SceneContent(){
             <ambientLight intensity={1}/>
             <directionalLight intensity={2}/>
             <Sky/>
-            <OrbitControls autoRotateSpeed={10} enablePan={true}/>
-            <PerspectiveCamera/>
-            <Model position={new Vector3(0,-10,0)} path={"city.glb"}/>
+            <OrbitControls autoRotateSpeed={10}  enablePan={true}/>
+            {/*<PerspectiveCamera/>*/}
+            <Model  path={"city.glb"}/>
         </>
     )
 }

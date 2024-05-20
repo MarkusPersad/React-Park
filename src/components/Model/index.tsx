@@ -1,11 +1,23 @@
 import {ModelProps, ObjectExtend} from "../../types";
 import {useGLTF} from "@react-three/drei";
-import {classifyNodes} from "../../Modules";
+import {BoxHelperExtend, classifyNodes} from "../../Modules";
 import {Children} from './Children'
+import {useEffect, useMemo, useState} from "react";
+import {useThree} from "@react-three/fiber";
 
 export function Model(props:ModelProps){
-
+    const {scene,camera} = useThree();
+    const [selectedObject,setSelectedObject] = useState<string>('');
+    const boxHelper = useMemo(() => new BoxHelperExtend(scene, 0xff0000), [scene]);
     const {nodes:model} = useGLTF(props.path);
+    useEffect(()=>{
+        camera.position.set(0,10,10);
+        camera.lookAt(model['Scene'].position);
+    },[camera,model])
+    useEffect(()=>{
+        boxHelper.attach(model[selectedObject]);
+    },[ selectedObject,boxHelper,model])
+
     const nodes = classifyNodes(model) as ObjectExtend[]
     const Groups = nodes.map((node:ObjectExtend)=>{
         if (node.children.length!==0){
@@ -15,7 +27,17 @@ export function Model(props:ModelProps){
                         name={node.name}
                         position={node.position}
                         rotation={node.rotation}
-                        scale={node.scale}>
+                        scale={node.scale}
+                        onPointerOver={(e)=>{
+                            console.log(e);
+                            setSelectedObject(node.name);
+                            boxHelper.setVisible(true)
+                        }}
+                        onPointerOut={(e)=>{
+                            console.log(e);
+                            boxHelper.setVisible(false);
+                            boxHelper.dispose();
+                        }}>
                         <Children children={node.children}/>
                     </group>
                 </>
