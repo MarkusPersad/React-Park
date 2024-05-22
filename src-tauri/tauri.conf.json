@@ -4,7 +4,7 @@
     "beforeBuildCommand": "bun run build",
     "beforeDevCommand": "bun run dev",
     "devPath": "http://localhost:5173",
-    "distDir": "../build"
+    "distDir": "../dist"
   },
   "package": {
     "productName": "react-park",
@@ -29,7 +29,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.markus.park.react-park",
+      "identifier": "com.markus.dev",
       "longDescription": "",
       "macOS": {
         "entitlements": null,
@@ -58,7 +58,7 @@
         "fullscreen": false,
         "height": 600,
         "resizable": true,
-        "title": "Park",
+        "title": "park",
         "width": 800
       }
     ]
