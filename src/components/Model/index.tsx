@@ -6,8 +6,11 @@ import {useEffect, useMemo, useState} from "react";
 import {useThree} from "@react-three/fiber";
 
 export function Model(props:ModelProps){
+    //使用当前scene和camera
     const {scene,camera} = useThree();
+    //选择某一Object，并进行记录
     const [selectedObject,setSelectedObject] = useState<string>('');
+    //
     const boxHelper = useMemo(() => new BoxHelperExtend(scene, 0xff0000), [scene]);
     const {nodes:model} = useGLTF(props.path);
     useEffect(()=>{
