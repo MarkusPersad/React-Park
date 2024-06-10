@@ -1,0 +1,16 @@
+{
+  "devices": [
+    {
+      "label": "Device 1",
+      "key": "Viewer/1"
+    },
+    {
+      "label": "Device 2",
+      "key": "Viewer/2"
+    },
+    {
+      "label": "Device 3",
+      "key": "Viewer/3"
+    }
+  ]
+}

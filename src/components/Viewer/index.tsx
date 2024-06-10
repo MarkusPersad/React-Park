@@ -1,5 +1,5 @@
 import {Canvas} from "@react-three/fiber";
-import {OrbitControls,  Sky,Stats} from "@react-three/drei";
+import {OrbitControls,  Sky} from "@react-three/drei";
 import {Model} from '../Model'
 import './Viewer.css'
 
@@ -19,7 +19,6 @@ export function Viewer(){
 function SceneContent(){
     return(
         <>
-            <Stats/>
             <ambientLight intensity={1}/>
             <directionalLight intensity={2}/>
             <Sky/>

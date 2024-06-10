@@ -10,13 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@react-three/drei": "^9.105.6",
-    "@react-three/fiber": "^8.16.6",
+    "@ant-design/icons": "^5.3.7",
+    "@react-three/drei": "^9.106.0",
+    "@react-three/fiber": "^8.16.8",
     "@types/three": "^0.164.0",
-    "antd": "^5.17.3",
+    "antd": "^5.18.0",
+    "axios": "^1.7.2",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.23.1",
     "three": "^0.164.1"
   },
   "devDependencies": {

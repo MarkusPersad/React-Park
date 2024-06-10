@@ -1,9 +1,10 @@
-import {Viewer} from "./components/Viewer";
+import {RFLayout} from "./components/layout";
+
 
 function App(){
     return(
        <div>
-           <Viewer/>
+           <RFLayout/>
        </div>
     )
 }
