@@ -1,48 +1,43 @@
 import {ModelProps, ObjectExtend} from "../../types";
-import {useGLTF} from "@react-three/drei";
+import {useGLTF, BBAnchor, Html} from "@react-three/drei";
 import { classifyNodes} from "../../Modules";
 import {Children} from './Children'
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {useThree} from "@react-three/fiber";
+import {Page} from '../Charts'
+
 
 export function Model(props:ModelProps){
-    //使用当前scene和camera
     const {camera} = useThree();
-    //选择某一Object，并进行记录
-    // const [selectedObject,setSelectedObject] = useState<string>('');
-    // //
-    // const boxHelper = useMemo(() => new BoxHelperExtend(scene, 0xff0000), [scene]);
     const {nodes:model} = useGLTF(props.path);
     useEffect(()=>{
         camera.position.set(0,10,10);
         camera.lookAt(model['Scene'].position);
     },[camera,model])
-    // useEffect(()=>{
-    //     boxHelper.attach(model[selectedObject]);
-    // },[ selectedObject,boxHelper,model])
-
+    const [selected,setSelected] = useState('')
     const nodes = classifyNodes(model) as ObjectExtend[]
     const Groups = nodes.map((node:ObjectExtend)=>{
         if (node.children.length!==0){
             return(
                 <>
                     <group
-                            name={node.name}
-                            position={node.position}
-                            rotation={node.rotation}
-                            scale={node.scale}
-                            onPointerOver={(e)=>{
-                                console.log(e);
-                                // setSelectedObject(node.name);
-                                // boxHelper.setVisible(true)
-                            }}
-                                onPointerOut={(e)=>{
-                                console.log(e);
-                                // boxHelper.setVisible(false);
-                                // boxHelper.dispose();
-                            }}>
-                            <Children children={node.children}/>
-                        </group>
+                        name={node.name}
+                        position={node.position}
+                        rotation={node.rotation}
+                        scale={node.scale}
+                        onClick={(e)=>{
+                            if (selected ==='')
+                            setSelected(node.name)
+                            else setSelected('')
+                            console.log(e)
+                        }}>
+                        {selected ===node.name &&<BBAnchor  anchor={[0,1,0]}>
+                            <Html center>
+                                <Page/>
+                            </Html>
+                        </BBAnchor>}
+                        <Children children={node.children}/>
+                    </group>
                 </>
             )
         }else if(node.type==="Mesh") {
@@ -54,13 +49,26 @@ export function Model(props:ModelProps){
                 rotation={node.rotation}
                 geometry={node.geometry}
                 material={node.material}
-                scale={node.scale}></mesh>
+                scale={node.scale}
+                onClick={(e)=>{
+                    if (selected ==='')
+                    setSelected(node.name)
+                    else setSelected('')
+                    console.log(e)
+                    }
+                }>
+                {selected ===node.name &&<BBAnchor anchor={[0,1,0]}>
+                    <Html center>
+                        <Page/>
+                    </Html>
+                </BBAnchor>}
+            </mesh>
         }
     })
     return(
         <>
             <group dispose={null} position={props.position}>
-            {Groups}
+                {Groups}
             </group>
         </>
     )

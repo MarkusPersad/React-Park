@@ -1,6 +1,11 @@
 import {Layout, Menu, MenuProps} from "antd";
 import React, {useState} from "react";
-import {AccountBookOutlined, DesktopOutlined, PieChartFilled, PieChartOutlined} from "@ant-design/icons";
+import {
+    AccountBookOutlined,
+    DesktopOutlined,
+    PieChartFilled,
+    PieChartOutlined,
+} from "@ant-design/icons";
 import Devices from '../../test/devices.json'
 import './index.css'
 import {Outlet, useNavigate} from "react-router-dom";
@@ -46,8 +51,8 @@ export function RFLayout(){
                         <Menu theme="dark" defaultSelectedKeys={['Viewer']} mode="inline" items={items}
                             onClick={(e)=>{
                                 if (e.key === 'DeviceStatus'|| e.key === 'Controller'|| e.key === 'About')
-                                navigate('/'+e.key)
-                                else navigate('/')
+                                    navigate('/'+e.key)
+                                else  navigate('/')
                                 console.log(e.key)
                             }}/>
                     </div>

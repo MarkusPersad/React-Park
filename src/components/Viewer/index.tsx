@@ -24,7 +24,7 @@ function SceneContent(){
             <Sky/>
             <OrbitControls autoRotateSpeed={10}  enablePan={true}/>
             {/*<PerspectiveCamera/>*/}
-            <Model  path={"city.glb"}/>
+            <Model  path={'city.glb'}/>
         </>
     )
 }
