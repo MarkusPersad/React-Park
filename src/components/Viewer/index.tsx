@@ -3,15 +3,11 @@ import {OrbitControls,  Sky} from "@react-three/drei";
 import {Model} from '../Model'
 import './Viewer.css'
 
-
-
-
-
 export function Viewer(){
     return (
         <div className="Viewer">
             <Canvas>
-              <SceneContent/>
+                <SceneContent/>
             </Canvas>
         </div>
     )
