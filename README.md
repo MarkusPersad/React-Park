@@ -53,9 +53,14 @@ bun install
 bun tauri init
 ```
 
+Debug命令
+
+```bash
+bun tauri dev
+```
 打包命令
 
 ```bash
-bunx tauri dev
+bun tauri build
 ```
 
