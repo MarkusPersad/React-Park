@@ -1,5 +1,5 @@
 import {Layout, Menu, MenuProps} from "antd";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {
     AccountBookOutlined,
     DesktopOutlined,
@@ -8,7 +8,9 @@ import {
 } from "@ant-design/icons";
 import Devices from '../../test/devices.json'
 import './index.css'
+import {useDevices} from '../../store/'
 import {Outlet, useNavigate} from "react-router-dom";
+import {DeviceType} from "../../types";
 const {Content,Sider} = Layout
 type MenuItem = Required<MenuProps>['items'][number];
 function getItem(
@@ -26,19 +28,20 @@ function getItem(
         onClick:handler
     } as MenuItem
 }
-const items:MenuItem[] = [
-    getItem('Devices Monitor','Viewer',<DesktopOutlined/>,()=>{},[
-        getItem(Devices.devices[0].label,Devices.devices[0].key),
-        getItem(Devices.devices[1].label,Devices.devices[1].key),
-        getItem(Devices.devices[2].label,Devices.devices[2].key),
-    ]),
-    getItem('Devices Information','DeviceStatus',<PieChartOutlined/>,()=>{}),
-    getItem('Devices Control','Controller',<PieChartFilled/>,()=>{}),
-    getItem('About','About',<AccountBookOutlined/>,()=>{})
-]
 export function RFLayout(){
+    const setDevices = useDevices(state => state.setDevices)
+    const tDevices = useDevices(state => state.devices)
+    const items:MenuItem[] = [
+        getItem('Devices Monitor','Viewer',<DesktopOutlined/>,()=>{},tDevices.map(device=>getItem(device.label,device.key))),
+        getItem('Devices Information','DeviceStatus',<PieChartOutlined/>,()=>{}),
+        getItem('Devices Control','Controller',<PieChartFilled/>,()=>{}),
+        getItem('About','About',<AccountBookOutlined/>,()=>{})
+    ]
     const [collapsed, setCollapsed] = useState(false);
     const navigate = useNavigate()
+    useEffect(()=>{
+        setDevices(Devices.devices as DeviceType[])
+    })
     return(
         <>
             <Layout style={{minHeight:'100vh'}}>
